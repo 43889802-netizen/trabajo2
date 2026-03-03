@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Virtual de Licores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<header>
+    <h1>🍾<B>AZKABAR</B></h1>
+    <p> Los mejores licores al mejor precio </p>
+</header>
+
+<nav>
+    <a href="AZKABAR.html">Inicio</a>
+    <a href="PRODUCTOS.html">Productos</a>
+    <a href="OFERTAS.html">Ofertas</a>
+    <a href="CONTACTOS.HTML">Contacto</a>
+    <a href="HISTORIA DE LOS LICORES.HTML">Historia</a>
+    <a href="#">🛒 Producto agregado al carrito</a>
+</nav>
+</h2>🛒 Carrito de Compras</h2>
+
+<ul id="lista-carrito"></ul>
+
+<p id="total"></p>
+
+<button onclick="vaciarCarrito()">Vaciar carrito</button>
+
+<script src="js/carrito.js"></script>
+
+<script>
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let lista = document.getElementById("lista-carrito");
+    let total = 0;
+
+    carrito.forEach(producto => {
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+            <img src="${producto.imagen}" width="80">
+            <strong>${producto.nombre}</strong><br>
+            Precio: S/ ${producto.precio}
+        `;
+
+        lista.appendChild(li);
+        total += producto.precio;
+    });
+
+    document.getElementById("total").textContent = "Total: S/ " + total;
+
+    function vaciarCarrito() {
+        localStorage.removeItem("carrito");
+        location.reload();
+    }
+</script>
+<footer>
+    <p>© 2026 Licorería Premium | Venta solo para mayores de 18 años</p>
+</footer>
+
+</body>
+</html>
