@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago</title>
+    <style>
+        .metodo { display: none; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>Selecciona tu método de pago</h2>
+
+<form>
+    <label>
+        <input type="radio" name="pago" value="tarjeta" onclick="mostrarMetodo()"> Tarjeta
+    </label><br>
+
+    <label>
+        <input type="radio" name="pago" value="yape" onclick="mostrarMetodo()"> Yape
+    </label><br>
+
+    <label>
+        <input type="radio" name="pago" value="efectivo" onclick="mostrarMetodo()"> Efectivo
+    </label>
+
+    <!-- Tarjeta -->
+    <div id="tarjeta" class="metodo">
+        <h3>Pago con tarjeta</h3>
+        <input type="text" placeholder="Número de tarjeta"><br>
+        <input type="text" placeholder="Nombre del titular"><br>
+        <input type="text" placeholder="Fecha de vencimiento"><br>
+        <input type="text" placeholder="CVV"><br>
+    </div>
+
+    <!-- Yape -->
+    <div id="yape" class="metodo">
+        <h3>Pago con Yape</h3>
+        <p>Escanea el código QR o ingresa tu número:</p>
+        <input type="text" placeholder="Número de celular"><br>
+    </div>
+
+    <!-- Efectivo -->
+    <div id="efectivo" class="metodo">
+        <h3>Pago en efectivo</h3>
+        <p>Paga al momento de la entrega.</p>
+    </div>
+
+    <br>
+    <button type="submit">Confirmar Pago</button>
+</form>
+
+<script>
+function mostrarMetodo() {
+    let metodos = document.querySelectorAll('.metodo');
+    metodos.forEach(m => m.style.display = 'none');
+
+    let seleccionado = document.querySelector('input[name="pago"]:checked').value;
+    document.getElementById(seleccionado).style.display = 'block';
+}
+</script>
+
+</body>
+</html>
